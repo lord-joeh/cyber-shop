@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - Cyber Shop</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html">Cyber Shop</a>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="products.html" class="nav-link">Products</a>
+          </li>
+          <li class="nav-item">
+            <a href="categories.html" class="nav-link">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+        </ul>
+        <div class="cart-icon">
+          <a href="cart.html" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </div>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="cart-container">
+      <h1>Your Shopping Cart</h1>
+      <div id="cart-list" class="cart-item-grid"></div>
+      <div class="cart-summary">
+        <div class="subtotal">
+          <span>Subtotal:</span>
+          <span id="subtotal-amount">GH₵0.00</span>
+        </div>
+        <div class="tax">
+          <span>Tax:</span>
+          <span id="tax-amount">GH₵0.00</span>
+        </div>
+        <div class="total">
+          <span>Total:</span>
+          <span id="total-amount">GH₵0.00</span>
+        </div>
+        <button id="checkout-button" class="checkout-btn">
+          Proceed to Checkout
+        </button>
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        displayCart(); // Ensure cart is displayed on load
+        document
+          .getElementById('checkout-button')
+          .addEventListener('click', checkout);
+      });
+
+      function displayCart() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartList = document.getElementById('cart-list');
+        cartList.innerHTML = ''; // Clear existing cart items
+
+        let subtotal = 0;
+
+        console.log(cart); // Check the cart contents
+
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity; // Calculate total for this item
+          subtotal += itemTotal; // Add to subtotal
+
+          const cartItem = document.createElement('div');
+          cartItem.innerHTML = `
+      <div class="cart-item">
+        <img src="${item.image}" alt="${item.name}" style="width: 50px; height: auto;"/>
+        <p>${item.name} - GH₵${item.price} x ${item.quantity}</p>
+        <button onclick="removeFromCart(${item.id})">Remove</button>
+      </div>
+    `;
+          cartList.appendChild(cartItem);
+        });
+        const tax = subtotal * 0.1; // Example tax calculation (10%)
+        const total = subtotal + tax;
+
+        console.log(`Subtotal: GH₵${subtotal.toFixed(2)}`); // Check subtotal calculation
+
+        // Update the totals in the cart display
+        document.getElementById(
+          'subtotal-amount',
+        ).textContent = `GH₵${subtotal.toFixed(2)}`;
+        document.getElementById('tax-amount').textContent = `GH₵${tax.toFixed(
+          2,
+        )}`;
+        document.getElementById(
+          'total-amount',
+        ).textContent = `GH₵${total.toFixed(2)}`;
+      }
+
+      function removeFromCart(productId) {
+        console.log(`Removing product with ID: ${productId}`); // Log the product ID being removed
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        console.log('Current cart before removal:', cart); // Log the current cart
+
+        const productIndex = cart.findIndex((item) => item.id === productId);
+        if (productIndex > -1) {
+          cart.splice(productIndex, 1);
+          console.log('Product removed. Updated cart:', cart); // Log the updated cart
+        } else {
+          console.log('Product not found in cart.'); // Log if the product was not found
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCart(); // Ensure the cart is displayed after removal
+        updateCartCount();
+      }
+    </script>
+  </body>
+</html>

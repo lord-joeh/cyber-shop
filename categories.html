@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categories - Cyber Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html">Cyber Shop</a>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="products.html" class="nav-link">Products</a>
+          </li>
+          <li class="nav-item">
+            <a href="categories.html" class="nav-link">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+          </li>
+        </ul>
+        <div class="cart-icon">
+          <a href="cart.html" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </div>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="categories-container">
+      <h1>Shop by Categories</h1>
+      <div class="category-grid">
+        <div class="category-card">
+          <img src="https://i.pinimg.com/736x/e2/ac/85/e2ac8573878a0dc2e30b22b0674ce13c.jpg" alt="Electronics" />
+          <h2>Electronics</h2>
+          <p>Latest gadgets and devices</p>
+          <a href="/products?category=electronics" class="category-link"
+            >Browse Electronics</a
+          >
+        </div>
+        <div class="category-card">
+          <img src="https://i.pinimg.com/736x/0f/c3/5d/0fc35dd4d2d1b200af2dde4077f9eda5.jpg" alt="fashion" />
+          <h2>Fashion</h2>
+          <p>Fashion and accessories</p>
+          <a href="/products?category=fashion" class="category-link"
+            >Browse Fashion</a
+          >
+        </div>
+        <div class="category-card">
+          <img src="https://i.pinimg.com/736x/66/a9/c7/66a9c761de1744b91c350c02ca2ee07e.jpg" alt="gaming" />
+          <h2>Books</h2>
+          <p>Games and accessories</p>
+          <a href="/products?category=gaming" class="category-link"
+            >Browse Games</a
+          >
+        </div>
+      </div>
+    </main>
+    <h1 id="category-header"> </h1>
+    <div id="product-list"></div>
+    <script src="index.js"></script>
+    <script>
+      // Ensure filterProducts function is defined
+      function filterProducts(category) {
+        const filteredProducts = category
+          ? products.filter(product => product.category === category)
+          : products;
+
+        // Update the H1 element with the selected category
+        const categoryHeader = document.getElementById('category-header');
+        if (categoryHeader) {
+          categoryHeader.textContent = ` ${category.charAt(0).toUpperCase() + category.slice(1)}`; // Capitalize the first letter
+        }
+
+        displayProducts(filteredProducts);
+      }
+
+      // Ensure the product list is empty on load
+      document.addEventListener('DOMContentLoaded', function() {
+        const productList = document.getElementById('product-list');
+        if (productList) {
+          productList.innerHTML = ''; // Clear the product list on load
+        }
+      });
+
+      document.querySelectorAll('.category-card a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const category = this.getAttribute('href').split('=')[1];
+          filterProducts(category); // Display products based on the selected category
+        });
+      });
+    </script>
+  </body>
+</html>

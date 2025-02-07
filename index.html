@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberShop</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="description" content="Your description here for better SEO." />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html">Cyber Shop</a>
+        </div>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href=" products.html" class="nav-link">Products</a>
+          </li>
+          <li class="nav-item">
+            <a href=" categories.html" class="nav-link">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a href=" about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href=" contact.html" class="nav-link">Contact</a>
+          </li>
+        </ul>
+        <div class="cart-icon">
+          <a href=" cart.html" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+          </a>
+        </div>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <h1 id="cart" aria-live="polite">Shopping Cart</h1>
+
+    <h1>Welcome to Cyber Shop!</h1>
+    <div id="featured-products" class="product-grid"></div>
+    <div id="product-list" class="product-grid"></div>
+    <div id="cart-list"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

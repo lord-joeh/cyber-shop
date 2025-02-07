@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Product - Cyber Shop</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <header>
+        <nav class="navbar">
+          <div class="logo">
+            <a href="index.html">Cyber Shop</a>
+          </div>
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href=" products.html" class="nav-link">Products</a>
+            </li>
+            <li class="nav-item">
+              <a href=" categories.html" class="nav-link">Categories</a>
+            </li>
+            <li class="nav-item">
+              <a href=" about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href=" contact.html" class="nav-link">Contact</a>
+            </li>
+          </ul>
+          <div class="cart-icon">
+            <a href=" cart.html" class="nav-link">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </a>
+          </div>
+          <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </nav>
+      </header>
+
+    <main class="product-view-container">
+      <div id="product-details" class="product-details">
+        <img id="product-image" src="" alt="Product Image" />
+        <h2 id="product-name"></h2>
+        <p id="product-description"></p>
+        <p id="product-price"></p>
+        <button id="add-to-cart" class="btn btn-primary">Add to Cart</button>
+      </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src=" index.js"></script>
+    <script src=" view-product.js"></script>
+  </body>
+</html>
