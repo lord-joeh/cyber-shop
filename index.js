@@ -510,7 +510,7 @@ function displayProducts(productsToDisplay) {
           <p>GH₵${product.price}</p>
           <div class="button-container">
               <button onclick="addToCart(${product.id})">Add to Cart</button>
-              <button onclick="window.location.href='/public/view-product.html?id=${product.id}'">View Product</button>
+              <button onclick="window.location.href='view-product.html?id=${product.id}'">View Product</button>
           </div>
       `;
     productGrid.appendChild(productItem);
